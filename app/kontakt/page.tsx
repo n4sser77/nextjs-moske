@@ -3,7 +3,7 @@ import ContactForm from "@/app/ui/components/ContactForm";
 export default function Kontakt() {
     return (
         < div className="md:w-10/12 lg:w-8/12 mx-auto sm:w-full bg-gray-100">
-         <h1 className="text-2xl text-slate-700 font-bold text-center mb-4">Kontakta Oss</h1>
+         <h1 className="text-2xl text-slate-700 font-bold text-center pt-3" >Kontakta Oss</h1>
          <hr className="m-2 w-48 mx-auto border border-slate-200 border-2"/>
 
 
