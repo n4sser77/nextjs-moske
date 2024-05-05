@@ -8,7 +8,7 @@ export default function OmIslam() {
             <div className=" px-4 py-2">
                 {OmIslamText.paragraphs.map((paragraph, index) => (
                     <div key={index} className="bg-slate-100 p-2 m-4">
-                     <p key={index} className="my-4 text-slate-700 md:text-lg p-2 ">{paragraph}</p>
+                     <p  className="my-4 text-slate-700 md:text-lg p-2 ">{paragraph}</p>
                      </div>
                 ))}
                 <hr/>
@@ -18,15 +18,17 @@ export default function OmIslam() {
                     <p className=" p-2 m-4 text-slate-700 text-md">
                          De viktiga aspekterna av islam är de fem pelarna, som utgör grunden för tro och praxis för varje troende muslim. Dessa pelare inkluderar:
                         </p>
+                        <ol className=" bg-slate-100 p-2 m-4 shadow rounded ">
                     {
                         OmIslamText.pillars.map((pillar, index) => (
-                            <ol className=" bg-slate-100 p-2 m-4 shadow rounded ">
-                                <li key={index} className="text-slate-700 m-2 p-2  ">{pillar.label}</li>
+                            <div key={index}>
+                                <label  className="text-slate-700 m-2 p-2  ">{pillar.label}</label>
                                 <li className="text-slate-700 text-sm p-2 ">{pillar.description}</li>
-                            </ol>
+                            </div>
 
                         ))
                     }
+                    </ol>
                 </div>
             </div>
 
