@@ -28,7 +28,7 @@ export default function RootLayout({
         </div>
 
 
-            <main className="bg-gray-100 p-4 md:w-10/12 lg:w-8/12 mx-auto">
+            <main >
             {children}
             </main>
             

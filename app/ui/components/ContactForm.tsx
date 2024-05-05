@@ -48,7 +48,7 @@ export default function ContactForm() {
 
     return (
         <div className="text-center py-8 mx-auto w-full pt-2 pb-2">
-            <form className="bg-gray-100 p-4 shadow border border-slate-200 " onSubmit={handleSubmit}>
+            <form className=" p-4 w-full" onSubmit={handleSubmit}>
                 <div className="mb-4">
                     <label htmlFor="name" className="block text-lg font-medium text-slate-800">Name</label>
                     <input
