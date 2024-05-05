@@ -3,14 +3,14 @@ import ServiceSection from "@/app/ui/components/ServiceSection";
 
 export default function Home() {
   return (
-    <div>
+    <div className="md:w-10/12 lg:w-8/12 sm:w-full mx-auto">
       <div className="w-full border border-slate-200 relative">
         {/* Hero section overlay */}
         <div className="absolute inset-0 z-10 bg-black opacity-50"></div>
         
         {/* Text overlay in the hero section */}
         <div className="absolute inset-0 z-20 flex items-center justify-center">
-          <h1 className="text-white text-6xl lg:text-8xl font-bold">Welcome to Nyköpings Moské</h1>
+          <h1 className="text-white text-6xl lg:text-8xl font-bold">Välkommen till Nyköpings Moské</h1>
         </div>
         
         {/* Image component for the hero section */}
