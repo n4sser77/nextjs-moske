@@ -1,5 +1,7 @@
 import PrayerTable from "@/app/ui/components/PrayerTable"
 export default function Bonetider() {
+    
+
     return (
         <div className="bg-gray-100">
 
