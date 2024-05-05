@@ -3,8 +3,8 @@ import ServiceSection from "@/app/ui/components/ServiceSection";
 
 export default function Home() {
   return (
-    <div className="md:w-10/12 lg:w-8/12 sm:w-full mx-auto">
-      <div className="w-full border border-slate-200 relative">
+    <div className="lg:w-10/12 sm:w-full mx-auto">
+      <div className="w-full border border-slate-200 relative mb-4 ">
         {/* Hero section overlay */}
         <div className="absolute inset-0 z-10 bg-black opacity-50"></div>
         
