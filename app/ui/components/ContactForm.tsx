@@ -47,8 +47,8 @@ export default function ContactForm() {
     };
 
     return (
-        <div className="text-center py-8 mx-auto w-full h-full ">
-            <form className="bg-gray-100 p-4 shadow border border-slate-200" onSubmit={handleSubmit}>
+        <div className="text-center py-8 mx-auto w-full pt-2 pb-2">
+            <form className="bg-gray-100 p-4 shadow border border-slate-200 " onSubmit={handleSubmit}>
                 <div className="mb-4">
                     <label htmlFor="name" className="block text-lg font-medium text-slate-800">Name</label>
                     <input
@@ -84,7 +84,7 @@ export default function ContactForm() {
                         autoComplete="off"
                         rows={4}
                         onChange={handleChange}
-                        className="mt-1 p-2 w-full border border-slate-200 rounded-md focus:outline-none focus:border-sky-600"
+                        className="mt-1 p-2 w-full  rounded-md focus:outline-none focus:border-sky-600"
                         required
                     ></textarea>
                 </div>
