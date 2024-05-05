@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { FormEvent } from 'react';
 
 export default function ContactForm() {
     const [formData, setFormData] = useState({
@@ -16,39 +17,42 @@ export default function ContactForm() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = async (e:any) => {
-        e.preventDefault();
-        console.log(formData);
+    
 
-        try {
-            const response = await fetch('/api/contact/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            });
+    const handleSubmit = (path: string) => async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(formData);
 
+    try {
+        const response = await fetch(`/api/contact/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
 
-            if (response.ok) {
-                console.log('Form submitted successfully');
-            }
-            if (!response.ok) {
-                throw new Error('Failed to submit form');
-            }
-
-            // Redirect to a success page or display a success message
-            router.push('/success');
-        } catch (error) {
-            console.error('Error submitting form:', error);
-
-            // Handle error (e.g., display error message)
+        if (response.ok) {
+            console.log('Form submitted successfully');
         }
-    };
+        if (!response.ok) {
+            throw new Error('Failed to submit form');
+        }
+
+        // Redirect to a success page or display a success message
+        router.push('/success');
+    } catch (error) {
+        console.error('Error submitting form:', error);
+
+        // Handle error (e.g., display error message)
+    }
+
+};
+
 
     return (
         <div className="text-center py-8 mx-auto w-full pt-2 pb-2">
-            <form className=" p-4 w-full" onSubmit={handleSubmit}>
+            <form className=" p-4 w-full" onSubmit={handleSubmit('contact')}>
                 <div className="mb-4">
                     <label htmlFor="name" className="block text-lg font-medium text-slate-800">Name</label>
                     <input
