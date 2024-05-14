@@ -10,11 +10,19 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-export async function sendEmail(text: any) {
+export async function sendEmail(data: any) {
+    // Convert the data object into a formatted string
+    const text = `
+        Name: ${data.name}
+        Email: ${data.email}
+        Message: ${data.message}
+        // Add other fields as needed
+    `;
+
     const info = await transporter.sendMail({
         from: 'Masjid contactForm',
         to: 'nasserqahtan0@gmail.com',
-        subject: ' New message from masjid contactForm',
-        text: text,
-    })
+        subject: 'New message from masjid contactForm',
+        text: text, // Pass the formatted string here
+    });
 }
