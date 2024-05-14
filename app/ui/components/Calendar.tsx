@@ -49,7 +49,7 @@ const changeMonth = (increment: number) => {
 
   const months = [
     'Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    'Jul', 'August', 'Sep', 'Oct', 'Nov', 'Dec'
   ];
 
   const getTotalDaysInMonth = (month: number, year: number) => {

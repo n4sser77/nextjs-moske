@@ -1,12 +1,27 @@
+'use client'
 import { data } from "@/app/data/Prayers";
-
-const date = new Date();
-const monthName = date.toLocaleString('default', { month: 'long' });
-const currentDay = new Date().getDate();
+import { useState, useEffect } from "react";
 
 
-export default function DataTable() {
+
+
+
+
+export default function PrayerTable({monthName}: {monthName:string}) {
   //console.log(data[currentDay - 1]);
+  const date = new Date();
+
+
+const [currentDay, setCurrentDay] = useState(date.getDate());
+
+useEffect ( () => {
+  const intervallId = setInterval(() => {
+    setCurrentDay (new Date().getDate());
+  }, 1000 * 60 * 60 * 24);
+
+  return () => clearInterval(intervallId);
+}, []);
+
 
   return (
     <div className="overflow-x-auto">

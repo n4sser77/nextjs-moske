@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Calendar from '@/app/ui/components/Calendar';
-
+import availableTimeSlots from '@/app/data/availableTimeSlots';
 
 
 
@@ -30,18 +30,12 @@ const BookingForm: React.FC = () => {
   };
 
 
-  const availableTimeSlots = [
-    '9:00 AM',
-    '10:00 AM',
-    '11:00 AM',
-    '1:00 PM',
-    '2:00 PM',
-  ]
+ 
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     // validate form data
-    
+
 
     console.log(formData);
 

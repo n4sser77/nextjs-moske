@@ -1,6 +1,8 @@
 import PrayerTable from "@/app/ui/components/PrayerTable"
 export default function Bonetider() {
-    
+    const months: string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 
+                            'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'];
+    const monthName = months[new Date().getMonth()];
 
     return (
         <div className="bg-gray-100">
@@ -11,7 +13,7 @@ export default function Bonetider() {
             
         </div>
 
-        <PrayerTable />
+        <PrayerTable monthName={monthName} />
 
         
         </div>
