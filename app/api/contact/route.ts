@@ -16,7 +16,7 @@ export async function POST(request: any){
 
         try {
             const data = fs.readFileSync(filePath, 'utf8');
-            submissions = JSON.parse(data);
+            submissions = JSON.stringify(data, null, 2);
 
         } catch (error) {
             console.error("Error reading this file", error);
