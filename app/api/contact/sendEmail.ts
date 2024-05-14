@@ -16,7 +16,6 @@ export async function sendEmail(data: any) {
         Name: ${data.name}
         Email: ${data.email}
         Message: ${data.message}
-        // Add other fields as needed
     `;
 
     const info = await transporter.sendMail({
