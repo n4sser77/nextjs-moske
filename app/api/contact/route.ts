@@ -25,7 +25,7 @@ export async function POST(request: any){
         
         
         console.log(data, "data >>>");
-        await sendEmail(data);
+        await sendEmail(JSON.parse(data));
     // parse the json + add the new data + write in json file again
         submissions.push(data);
 
