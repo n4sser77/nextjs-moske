@@ -1,4 +1,5 @@
 import {NextResponse} from "next/server";
+import {sendEmail, sendEmailBook} from "@/utils/sendEmail";
 const fs = require('fs');
 const path = require('path');
 
@@ -6,7 +7,7 @@ export async function POST(request: any){
     const data = await request.json();
 
     //read db -json file
-        const filePath = path.resolve(process.cwd(),'app/data/bookings.json');
+     /*   const filePath = path.resolve(process.cwd(),'app/data/bookings.json');
 
         let bookings: any = [];
 
@@ -27,7 +28,9 @@ export async function POST(request: any){
             
         } catch (error) {
             console.error('Error writing this file', error);
-        }
+        } */
+
+        await sendEmailBook(data);
 
         return NextResponse.json({
             data: data,

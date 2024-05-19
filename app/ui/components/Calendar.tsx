@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import {months} from '@/utils/months';
 interface DateObject {
   selectedDay: number;
   currentMonth: number;
@@ -47,10 +47,7 @@ const changeMonth = (increment: number) => {
 };
 
 
-  const months = [
-    'Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun',
-    'Jul', 'August', 'Sep', 'Oct', 'Nov', 'Dec'
-  ];
+
 
   const getTotalDaysInMonth = (month: number, year: number) => {
     return new Date(year, month + 1, 0).getDate();
@@ -127,3 +124,4 @@ const changeMonth = (increment: number) => {
 };
 
 export default Calendar;
+

@@ -1,4 +1,5 @@
 import ContactForm from "@/app/ui/components/ContactForm";
+import Link from "next/link";
 
 export default function Kontakt() {
     return (
@@ -10,11 +11,25 @@ export default function Kontakt() {
                 Skickat
             </h1>
             <hr className="m-2 w-48 mx-auto 
-            border border-slate-200 border-2" 
+            border border-slate-200 border-2"
             />
-            <div className="mx-auto  
-            w-10/12 lg:mx-auto sm:w-10/12 lg:mx-auto 
-            sm:w-full lg:w-6/12"> Vi besvarar ditt medlande igenom kort</div>
+            <Link href="/">
+                <div className=" w-11/12 text-center mb-6 p-4
+             bg-emerald-400 border shadow rounded
+              text-white text-lg font-mono font-bold
+               lg:w-6/12 mx-auto
+               min-h-fit transition-all 
+                hover:scale-105 hover:cursor-pointer
+
+             ">
+                    Tack för ditt meddelande
+                    Vi besvarar ditt inom kort,
+                    <h1 className="m-2 mt-1 p-2">
+                        För att gå tillbaka till huvudsidan klicka här
+                    </h1>
+                </div>
+            </Link>
+
 
         </>
 

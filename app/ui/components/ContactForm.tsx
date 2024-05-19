@@ -13,41 +13,42 @@ export default function ContactForm() {
 
     const router = useRouter();
 
-    const handleChange = (e:any) => {
+    const handleChange = (e: any) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    
+
 
     const handleSubmit = (path: string) => async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(formData);
+        e.preventDefault();
+        console.log(formData);
 
-    try {
-        const response = await fetch(`/api/contact/`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        });
+        try {
+            const response = await fetch(`/api/contact/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
 
-        if (response.ok) {
-            console.log('Form submitted successfully');
+            if (response.ok) {
+                console.log('Form submitted successfully');
+            }
+            if (!response.ok) {
+                throw new Error('Failed to submit form');
+            }
+
+            // Redirect to a success page or display a success message
+            router.push('/success');
+        } catch (error) {
+            // Handle error (e.g., display error message)
+            console.error('Error submitting form:', error);
+
+
         }
-        if (!response.ok) {
-            throw new Error('Failed to submit form');
-        }
 
-        // Redirect to a success page or display a success message
-        router.push('/success');
-    } catch (error) {
-        console.error('Error submitting form:', error);
-
-        // Handle error (e.g., display error message)
-    }
-
-};
+    };
 
 
     return (

@@ -1,50 +1,50 @@
-import {NextResponse} from "next/server";
-import { sendEmail } from "./sendEmail";
+import { NextResponse } from "next/server";
+import { sendEmail } from "@/utils/sendEmail";
 const fs = require('fs');
 const path = require('path');
 
 
-export async function POST(request: any){
+export async function POST(request: any) {
 
     const data = await request.json();
 
 
     //read db -json file
-        const filePath = path.resolve(process.cwd(),'app/data/subbmision.json');
+    /* const filePath = path.resolve(process.cwd(), 'app/data/subbmision.json');
+ 
+     let submissions: any = [];
+ 
+     try {
+         const data = fs.readFileSync(filePath, 'utf8');
+         submissions = JSON.stringify(data, null, 2);
+ 
+     } catch (error) {
+         console.error("Error reading this file", error);
+ 
+     } */
 
-        let submissions: any = [];
 
-        try {
-            const data = fs.readFileSync(filePath, 'utf8');
-            submissions = JSON.stringify(data, null, 2);
+    console.log(data, "data >>>");
+    await sendEmail(data);
 
-        } catch (error) {
-            console.error("Error reading this file", error);
-
-        }
-        
-        
-        console.log(data, "data >>>");
-        await sendEmail(data);
     // parse the json + add the new data + write in json file again
-        submissions.push(data);
+    // submissions.push((data));
 
-        try {
-            const newData = JSON.stringify(submissions, null, 2);
-            fs.writeFileSync(filePath, newData, 'utf8');
+    /* try {
+         const newData = JSON.stringify(submissions, null, 2);
+         fs.writeFileSync(filePath, newData, 'utf8');
+ 
+ 
+ 
+     } catch (error) {
+         console.error('Error writing this file', error);
+     } */
 
-            
-            
-        } catch (error) {
-            console.error('Error writing this file', error);
-        }
+    return NextResponse.json({
+        data: data,
+        message: 'This message has been  successfully sent',
+        succes: true
 
-        return NextResponse.json({
-            data: data,
-            message: 'This message has been  successfully sent',
-            succes: true
-
-})
+    })
 }
 
- 
