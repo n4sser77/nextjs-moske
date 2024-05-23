@@ -11,11 +11,11 @@ export default function Kontakt() {
                 Skickat
             </h1>
             <hr className="m-2 w-48 mx-auto 
-            border border-slate-200 border-2"
+             border-slate-200 border-2"
             />
             <Link href="/">
                 <div className=" w-11/12 text-center mb-6 p-4
-             bg-emerald-400 border shadow rounded
+             bg-emerald-400  shadow rounded
               text-white text-lg font-mono font-bold
                lg:w-6/12 mx-auto
                min-h-fit transition-all 
