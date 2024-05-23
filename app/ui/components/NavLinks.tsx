@@ -20,7 +20,8 @@ const links = [
   {
     title: 'kontakt',
     href: '/kontakt',
-  }
+  },
+  
 ]
 
 export default function NavLinks() {

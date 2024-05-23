@@ -1,43 +1,28 @@
-import {NextResponse} from "next/server";
-import {sendEmail, sendEmailBook} from "@/utils/sendEmail";
-const fs = require('fs');
-const path = require('path');
+import { NextResponse, NextRequest } from "next/server";
+import { sendEmailBook } from "@/utils/sendEmail";
+import { addBooking } from './bookings';
 
-export async function POST(request: any){
-    const data = await request.json();
+export async function POST(req: NextRequest) {
+    const data = await req.json();
+    await sendEmailBook(data);
 
-    //read db -json file
-     /*   const filePath = path.resolve(process.cwd(),'app/data/bookings.json');
-
-        let bookings: any = [];
-
-        try {
-            const data = fs.readFileSync(filePath, 'utf8');
-            bookings = JSON.parse(data);
-        } catch (error) {
-            console.error("Error reading this file", error);
-        }
+    try {
         
-        console.log(data, "data >>>")
-    // parse the json + add the new data + write in json file again
-        bookings.push(data);
-
-        try {
-            const newData = JSON.stringify(bookings, null, 2);
-            fs.writeFileSync(filePath, newData, 'utf8');
-            
-        } catch (error) {
-            console.error('Error writing this file', error);
-        } */
-
-        await sendEmailBook(data);
+        const result = await addBooking(data);
 
         return NextResponse.json({
-            data: data,
-            message: 'Booked successfully sent to bookings.json',
+            message: 'Booking added successfully',
+            result,
             succes: true
+        });
 
-})
+    } catch (error) {
+        return NextResponse.json({
+            error: 'Failed to add booking'
+        },
+            { status: 500 });
+    }
+
+
 }
 
- 

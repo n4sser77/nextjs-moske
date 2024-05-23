@@ -25,6 +25,11 @@ const services = [
         description: "Kom i kontakt med oss för frågor, samarbetsmöjligheter och annan information.",
         link: "/kontakt",
     },
+    {
+        title: "Besök oss",
+        description: "Välj en tid och boka ett besök.",
+        link: "/besok-oss",
+    }
 
 ];
 

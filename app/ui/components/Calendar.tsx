@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {months} from '@/utils/months';
+import { NextRequest } from 'next/server';
 interface DateObject {
   selectedDay: number;
   currentMonth: number;
@@ -12,10 +13,23 @@ interface CalendarProps {
 
 const Calendar: React.FC<CalendarProps> = ({ onDateSelect }) => {
   const [date, setDate] = useState<DateObject>({
-    selectedDay: 0,
+    selectedDay: new Date().getDate(),
     currentMonth: new Date().getMonth(),
-    currentYear: new Date().getFullYear(),
+    currentYear: new Date().getFullYear()
+
   });
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch('/api/book/');
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
+
 
   const handleBooking = (day: number) => {
     const newDate = { ...date, selectedDay: day };
@@ -46,9 +60,6 @@ const changeMonth = (increment: number) => {
   });
 };
 
-
-
-
   const getTotalDaysInMonth = (month: number, year: number) => {
     return new Date(year, month + 1, 0).getDate();
   };
@@ -61,8 +72,8 @@ const changeMonth = (increment: number) => {
 
     for (let i = 1; i <= totalDays; i++) {
       const date = new Date(currentYear, currentMonth, i);
-      const weekday = date.toLocaleDateString('en-US', { weekday: 'short' });
-      daysOfMonth.push({ day: i, weekday });
+      
+      daysOfMonth.push({ day: i });
     }
 
     for (let i = 0; i < firstDayOfMonth; i++) {
@@ -72,19 +83,20 @@ const changeMonth = (increment: number) => {
     return daysOfMonth;
   };
 
+
   return (
     <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
       <div className="flex justify-between items-center mb-4">
         <button type="button" onClick={() => changeMonth(-1)}
-          className="px-3 py-2 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+          className=" px-2 py-1 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
         >
-          Previous Month
+          Förra Mänad
         </button>
-        <h1 className="text-2xl font-bold">{months[date.currentMonth]} {date.currentYear}</h1>
+        <h1 className="text-xl font-bold">{months[date.currentMonth]} {date.currentYear}</h1>
         <button type="button" onClick={() => changeMonth(1)}
-          className="px-3 py-2 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+          className=" px-2 py-1 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
         >
-          Next Month
+          Nästa Månad
         </button>
       </div>
       <div className="grid grid-cols-7 gap-2">
@@ -92,7 +104,13 @@ const changeMonth = (increment: number) => {
           <div key={day} className="text-center font-semibold">{day}</div>
         ))}
         {generateDaysOfMonth().map((slot, index) => (
-          <div key={index} className={`py-2 px-4 mb-1 bg-white rounded-md ${slot ? 'grid-place-items-center' : 'bg-gray-100'}`}>
+          <div key={index} 
+              className={`py-2 px-4 mb-1 bg-white rounded-md ${slot ?
+           'grid-place-items-center' :
+            'bg-white hover:bg-slate-100'}`
+          }
+          >
+
             {slot && (
               <button
                 type="button"
@@ -103,6 +121,8 @@ const changeMonth = (increment: number) => {
                   : 'bg-slate-100  hover:bg-white focus:ring-600 focus:bg-emerald-200'
                 }`}
               >
+                
+                
                 {slot.day}
               </button>
             )}

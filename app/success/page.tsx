@@ -23,7 +23,7 @@ export default function Kontakt() {
 
              ">
                     Tack för ditt meddelande
-                    Vi besvarar ditt inom kort,
+                    Vi besvarar ditt meddelande inom kort,
                     <h1 className="m-2 mt-1 p-2">
                         För att gå tillbaka till huvudsidan klicka här
                     </h1>

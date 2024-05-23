@@ -36,7 +36,6 @@ const BookingForm: React.FC = () => {
     e.preventDefault();
     // validate form data
 
-
     console.log(formData);
 
     try {
@@ -96,7 +95,8 @@ const BookingForm: React.FC = () => {
       <select
         value={formData.selectedSlot}
         onChange={(e) => setFormData({...formData, selectedSlot: e.target.value})}
-        className='m-2 px-4 py-3 h-10 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500'
+        className='m-2 px-6 py-2 text-center text-slate-700 bg-white text-lg rounded-lg border
+         border-gray-300 focus:outline-none focus:border-blue-500'
       >
         <option value="">Select a Time Slot</option>
         {/* You can dynamically populate options from availableTimeSlots array */}
