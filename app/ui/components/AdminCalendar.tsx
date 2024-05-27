@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-import { NumberFormatOptions } from '@formatjs/intl';
 
 
 
@@ -104,8 +103,8 @@ export default function Calendar({ bookings }: CalendarProps) {
 
                         const booking = bookings.find(booking => {
                             return (
-                                (booking.selectedDate.selectedDay).toString() === (date.getDate()).toLocaleString('sv-SE', { day: '2-digit' } as NumberFormatOptions ).toString() &&
-                                (booking.selectedDate.currentMonth).toString() === (date.getMonth()).toLocaleString('sv-SE', { month: '2-digit' } as NumberFormatOptions ).toString() &&
+                                (booking.selectedDate.selectedDay).toString() === (date.getDate()).toLocaleString('sv-SE', { day: '2-digit' } as any ).toString() &&
+                                (booking.selectedDate.currentMonth).toString() === (date.getMonth()).toLocaleString('sv-SE', { month: '2-digit' } as any ).toString() &&
                                 (booking.selectedDate.currentYear).toString() === (date.getFullYear()).toString()
                             );
                         });
