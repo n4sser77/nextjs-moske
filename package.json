@@ -10,6 +10,7 @@
     "test": "npx ts-node ./app/dbTest.mjs"
   },
   "dependencies": {
+    "@formatjs/intl": "^2.10.4",
     "@types/nodemailer": "^6.4.15",
     "clsx": "^2.1.1",
     "csv-parser": "^3.0.0",
