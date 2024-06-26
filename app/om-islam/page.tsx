@@ -22,8 +22,8 @@ export default function OmIslam() {
                     {
                         OmIslamText.pillars.map((pillar, index) => (
                             <div key={index}>
-                                <label  className="text-slate-700 m-2 p-2  ">{pillar.label}</label>
-                                <li className="text-slate-700 text-sm p-2 ">{pillar.description}</li>
+                                <label  className="text-slate-700 m-2 p-2  font-bold">{pillar.label}</label>
+                                <li className="text-slate-700 text-sm p-2 shadow-md m-4 ">{pillar.description}</li>
                             </div>
 
                         ))

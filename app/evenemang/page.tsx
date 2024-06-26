@@ -8,10 +8,7 @@ export default function Evenemang() {
             <div className="text-center m-2 bg-white shadow rounded border border-slate-100 p-8">
                 Här kommer alla evenemang och aktiviteter. att visas.
 
-
-
-
-
+                
             </div>
         </div>
     );

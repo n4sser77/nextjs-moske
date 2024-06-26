@@ -4,6 +4,9 @@ import "./globals.css";
 import Footer from './ui/components/Footer'
 import Navbar from "@/app/ui/components/Navbar";
 
+
+
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,6 +23,7 @@ export default function RootLayout({
     <html lang="sv en">
 
 
+
       <body className={inter.className} >
 
         <Navbar />
@@ -27,16 +31,11 @@ export default function RootLayout({
           Webbplatsen är under konstruktion. Fler funktioner kommer snart!
         </div>
 
+        <main className="min-h-screen "> {children} </main>
 
-            <main >
-            {children}
-            </main>
-            
-
-
-        
         <Footer />
       </body>
+
 
     </html>
 

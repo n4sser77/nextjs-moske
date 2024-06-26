@@ -7,8 +7,8 @@ export default function StodOss() {
             <div className="mx-auto  w-10/12 lg:mx-auto sm:w-full lg:w-6/1 p-5 m-8">
                 Kommer snart. <br /><br />
 
-                Här kommer du smidigt kunna stöda oss genom att donera. <br/> <br/>
-                 Det ska enklare att ge gåvor i form av sadaqa, zakat, zakat-al-fitr eller annat.
+                Här kommer du smidigt kunna stöjda oss genom att donera. <br/> <br/>
+                 Det ska vara enklare att ge gåvor i form av sadaqa, zakat al-mal, zakat-al-fitr eller annat.
                 Tills dess donation sker som vanligt via swish.
             </div>
         </div>
