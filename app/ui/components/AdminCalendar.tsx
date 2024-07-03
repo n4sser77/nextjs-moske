@@ -99,6 +99,7 @@ export default function Calendar({ bookings }: CalendarProps) {
                         });
 
                         const isBooked = !!booking;
+
                         const isToday = today === date.getDate();
                         console.log(` isBooked val: ${isBooked}, isToday val: ${isToday}`)
 
@@ -111,13 +112,19 @@ export default function Calendar({ bookings }: CalendarProps) {
                                     {date.getDate()}
                                 </div>
                                 <div>
-                                    {isBooked && (
+                                    {
+                                    
+                                    isBooked && (
                                         <>
                                             <div className="text-sm text-gray-600 font-bold">Booked</div>
                                             <div className="text-sm text-gray-600">{booking?.title}</div>
                                             <div className="text-sm text-gray-600">{booking?.selectedSlot}</div>
                                         </>
-                                    )}
+                                    )
+                                    
+                                    }
+                                    
+
                                     {isToday && <div className="text-sm text-blue-600 font-bold">Today</div>}
                                 </div>
                             </div>

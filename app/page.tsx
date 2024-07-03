@@ -1,7 +1,7 @@
 import Image from "next/image";
 import ServiceSection from "@/app/ui/components/ServiceSection";
 import HeroSection from "@/app/ui/components/HeroSection";
-import { AuthProvider } from "./admin/AuthContext";
+
 
 export default function Home() {
   return (
