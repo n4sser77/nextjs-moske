@@ -9,7 +9,9 @@ export default function BesokOss() {
             <div className=" text-center p-2 m-2 bg-slate-100 w-64 mx-auto">
                 Välj en tid och boka ett besök
             </div>
+            
             <BookingForm />
+
         </div>
     )
 };
