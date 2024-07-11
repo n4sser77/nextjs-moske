@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { sendEmail } from "@/utils/sendEmail";
+import { sendEmail } from "@/app/utils/sendEmail";
 const fs = require('fs');
 const path = require('path');
 

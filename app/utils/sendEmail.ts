@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { months } from '@/utils/months';
+import { months } from '@/app/utils/months';
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
