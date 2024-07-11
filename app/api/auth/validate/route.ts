@@ -1,10 +1,10 @@
 // app/api/auth/validate/route.ts
-import { NextApiRequest, NextApiResponse } from "next";
+
 import { authenticate } from "@/app/utils/auth"; // Ensure this path is correct
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { Z_UNKNOWN } from "zlib";
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(req: NextRequest, res: NextResponse) {
   try {
 
     const cookieHeader = req.headers.get("cookie") as any;
