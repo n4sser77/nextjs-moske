@@ -1,30 +1,54 @@
-import AdminSection from "../ui/components/AdminSection";
-import AdminInput from "../ui/components/AdminInput";
+// app/admin/page.tsx
+'use client';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import AdminSection from '@/app/ui/components/AdminSection';
 
-export default function AdminPage() {
+const AdminPage = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState({username: 'null', });
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
-    return (
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await fetch('/api/auth/validate', {
+          method: 'GET',
+          credentials: 'include',
+        });
 
-        <div className="bg-slate-100 mx-2">
-            <h1 className="text-2xl text-center
-             text-slate-700 mt-7 p-4 font-bold">
-                Admin Panel
-            </h1>
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data)
+          setIsAuthenticated(true);
+          setUser({...user, ...data});
+          console.log(user)
+        } else {
+          setIsAuthenticated(false);
+          router.push('/login');
+        }
+      } catch (error) {
+        console.error('Error checking authentication:', error);
+        setIsAuthenticated(false);
+        router.push('/login');
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    checkAuth();
+  }, []);
 
+  if (loading) {
+    return <p>Loading...</p>; // or a loading spinner
+  }
 
-            <div className="text-slate-700 text-lg text-center p-2 mb-2">
-                
-                <AdminInput />
+  if (!isAuthenticated) {
+    return null;
+  }
 
-            </div>
+  return <AdminSection user={user} />;
+};
 
-
-        </div>
-
-
-    )
-}
-
-
-
+export default AdminPage;

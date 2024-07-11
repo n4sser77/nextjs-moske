@@ -1,4 +1,4 @@
-
+'use client'
 import AdminCalendar from "./AdminCalendar";
 import React from 'react';
 
@@ -39,9 +39,12 @@ const bookings: Booking[] = [
     }
 ];
 
-export default function AdminSection() {
+
+
+export default function AdminSection(user: any) {
     return (
         <div className="bg-gray-100 py-4">
+            <h2>Hello  {user.username} </h2>
             <div className="overflow-x-auto shadow-md ">
                 <table className="min-w-full bg-white border border-gray-300 ">
                     <thead>
