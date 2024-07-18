@@ -1,5 +1,5 @@
 import { MongoClient, Db, ServerApiVersion } from "mongodb";
-import dotenv from "dotenv";
+// import dotenv from "dotenv";
 
 // dotenv.config(); // Load .env.local
 
