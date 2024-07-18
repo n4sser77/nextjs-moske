@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import AdminCalendar from './AdminCalendar';
 
 export interface Booking {
-  title: string;
+  name: string;
   phoneNumber: string;
   email: string;
   selectedSlot: string;
@@ -31,7 +31,7 @@ const AdminSection = () => {
         }
         const data = await response.json();
         setBookings(data);
-      } catch (error: error) {
+      } catch (error) {
         setError(error.message);
       } finally {
         setLoading(false);
@@ -66,7 +66,7 @@ const AdminSection = () => {
           <tbody>
             {bookings.map((item, index) => (
               <tr key={index}>
-                <td className="px-6 py-4 border-b border-gray-300 text-sm text-left">{item.title}</td>
+                <td className="px-6 py-4 border-b border-gray-300 text-sm text-left">{item.name}</td>
                 <td className="px-6 py-4 border-b border-gray-300 text-sm text-left">{item.email}</td>
                 <td className="px-6 py-4 border-b border-gray-300 text-sm text-left">{item.phoneNumber}</td>
                 <td className="px-6 py-4 border-b border-gray-300 text-sm text-left">{item.selectedSlot}</td>
