@@ -1,7 +1,7 @@
 import { MongoClient, Db, ServerApiVersion } from "mongodb";
 import dotenv from "dotenv";
 
-dotenv.config(); // Load .env.local
+// dotenv.config(); // Load .env.local
 
 let client: MongoClient | undefined;
 let db: Db | undefined;

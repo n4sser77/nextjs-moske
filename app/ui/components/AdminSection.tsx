@@ -31,7 +31,7 @@ const AdminSection = () => {
         }
         const data = await response.json();
         setBookings(data);
-      } catch (error) {
+      } catch (error: error) {
         setError(error.message);
       } finally {
         setLoading(false);
