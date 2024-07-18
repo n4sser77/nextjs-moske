@@ -1,35 +1,23 @@
 // @/app/utils/auth.ts
 import crypto from "crypto";
-import fs from "fs";
-import path from "path";
+import dbConnect from "../api/dbConnect";
 
-// Correctly resolve the path to the users.json file
-const usersFilePath = path.resolve(process.cwd(), "app/users.json");
-
-/**
- * Reads users from the JSON file.
- */
-function readUsersFromFile() {
-  try {
-    const fileContent = fs.readFileSync(usersFilePath, "utf-8");
-    return JSON.parse(fileContent);
-  } catch (error) {
-    console.error('Error reading users file:', error);
-    return [];
-  }
+async function readUsersFromDb() {
+  const db = await dbConnect();
+  const collection = db.collection("users");
+  return await collection.find().toArray();
 }
 
-/**
- * Writes users to the JSON file.
- * @param users The users array to write to the file.
- */
-function writeUsersToFile(users: any) {
-  try {
-    fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));  
-  } catch (error) {
-    console.error('Error writing users file:', error);
-  }
-  
+async function writeUserToDb(user: any) {
+  const db = await dbConnect();
+  const collection = db.collection("users");
+  await collection.insertOne(user);
+}
+
+async function updateUserInDb(user: any) {
+  const db = await dbConnect();
+  const collection = db.collection("users");
+  await collection.updateOne({ username: user.username }, { $set: user });
 }
 
 /**
@@ -37,8 +25,8 @@ function writeUsersToFile(users: any) {
  * @param username The username of the new user.
  * @param password The password of the new user.
  */
-export function register(username: string, password: string) {
-  const users = readUsersFromFile();
+export async function register(username: string, password: string) {
+  const users = await readUsersFromDb();
 
   // Check if the user already exists
   if (users.find((user: any) => user.username === username)) {
@@ -48,11 +36,11 @@ export function register(username: string, password: string) {
   // Hash the password
   const hash = crypto.createHash("sha256").update(password).digest("hex");
 
-  // Add user to users array
-  users.push({ username, password: hash, token: "" });
+  // Create the new user object
+  const newUser = { username, password: hash, token: "" };
 
-  // Save users to the file
-  writeUsersToFile(users);
+  // Save the new user to the database
+  await writeUserToDb(newUser);
 }
 
 /**
@@ -61,8 +49,8 @@ export function register(username: string, password: string) {
  * @param password The password of the user.
  * @returns The generated user token.
  */
-export function login(username: string, password: string) {
-  const users = readUsersFromFile();
+export async function login(username: string, password: string) {
+  const users = await readUsersFromDb();
 
   // Hash the provided password
   const hash = crypto.createHash("sha256").update(password).digest("hex");
@@ -80,8 +68,8 @@ export function login(username: string, password: string) {
   const token = crypto.randomBytes(16).toString("hex");
   user.token = token;
 
-  // Save users to the file
-  writeUsersToFile(users);
+  // Update the user in the database
+  await updateUserInDb(user);
 
   return token;
 }
@@ -91,8 +79,8 @@ export function login(username: string, password: string) {
  * @param token The user token to authenticate.
  * @returns The authenticated user.
  */
-export function authenticate(token: any) {
-  const users = readUsersFromFile();
+export async function authenticate(token: string) {
+  const users = await readUsersFromDb();
   const user = users.find((user: any) => user.token === token);
 
   if (!user) {
@@ -101,4 +89,3 @@ export function authenticate(token: any) {
 
   return user;
 }
-

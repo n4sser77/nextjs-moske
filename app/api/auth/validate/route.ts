@@ -24,7 +24,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
       });
     }
 
-    const user = authenticate(token); // This should validate the token and return the user
+    const user = await authenticate(token); // This should validate the token and return the user
     if (!user) {
       return new NextResponse(JSON.stringify({ error: "Invalid token" }), {
         status: 401,

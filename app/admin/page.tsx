@@ -1,12 +1,11 @@
-// app/admin/page.tsx
-'use client';
+'use client'
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import AdminSection from '@/app/ui/components/AdminSection';
 
 const AdminPage = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState({username: 'null', });
+  const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
@@ -20,10 +19,9 @@ const AdminPage = () => {
 
         if (response.ok) {
           const data = await response.json();
-          console.log(data)
+          console.log(data);
           setIsAuthenticated(true);
-          setUser({...user, ...data});
-          console.log(user)
+          setUser(data);
         } else {
           setIsAuthenticated(false);
           router.push('/login');
@@ -38,7 +36,11 @@ const AdminPage = () => {
     };
 
     checkAuth();
-  }, []);
+  }, [router]);
+
+  useEffect(() => {
+    console.log('User state updated:', user);
+  }, [user]); // Watch for changes in `user` state
 
   if (loading) {
     return <p>Loading...</p>; // or a loading spinner
@@ -48,7 +50,7 @@ const AdminPage = () => {
     return null;
   }
 
-  return <AdminSection user={user} />;
+  return <AdminSection/>;
 };
 
 export default AdminPage;

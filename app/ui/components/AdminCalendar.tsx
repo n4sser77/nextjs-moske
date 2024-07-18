@@ -16,7 +16,7 @@ function getCurrentWeekDates(startDate: Date) {
 const today = new Date().getDate();
 
 interface Booking {
-    title: string;
+    name: string;
     phoneNumber: string;
     email: string;
     selectedSlot: string;
@@ -56,7 +56,6 @@ export default function Calendar({ bookings }: CalendarProps) {
         newDate.setDate(currentDate.getDate() + 7);
         setCurrentDate(newDate);
     };
-    
 
     return (
         <div className="w-full bg-emerald-200 p-6 mt-6 mb-4 h-auto shadow-lg rounded-lg">
@@ -92,16 +91,12 @@ export default function Calendar({ bookings }: CalendarProps) {
                     {weekDates.map((date, index) => {
                         const formattedDate = formatDate(date);
 
-                        const booking = bookings.find(booking => {
-                            const bookingDate = `${booking.selectedDate.selectedDay}/${booking.selectedDate.currentMonth}/${booking.selectedDate.currentYear}`;
-                            console.log(`bookingDate val: ${bookingDate}, formattedDate val: ${formattedDate}` )
+                        const bookingsForDay = bookings.filter(booking => {
+                            const bookingDate = `${booking.selectedDate.selectedDay}/${booking.selectedDate.currentMonth + 1}/${booking.selectedDate.currentYear}`;
                             return bookingDate === formattedDate;
                         });
 
-                        const isBooked = !!booking;
-
                         const isToday = today === date.getDate();
-                        console.log(` isBooked val: ${isBooked}, isToday val: ${isToday}`)
 
                         return (
                             <div
@@ -113,17 +108,18 @@ export default function Calendar({ bookings }: CalendarProps) {
                                 </div>
                                 <div>
                                     {
-                                    
-                                    isBooked && (
-                                        <>
-                                            <div className="text-sm text-gray-600 font-bold">Booked</div>
-                                            <div className="text-sm text-gray-600">{booking?.title}</div>
-                                            <div className="text-sm text-gray-600">{booking?.selectedSlot}</div>
-                                        </>
-                                    )
-                                    
+                                        bookingsForDay.length > 0 ? (
+                                            bookingsForDay.map((booking, bookingIndex) => (
+                                                <div key={bookingIndex} className="mb-2">
+                                                    <div className="text-sm text-gray-600 font-bold">Booked</div>
+                                                    <div className="text-sm text-gray-600">{booking.name}</div>
+                                                    <div className="text-sm text-gray-600">{booking.selectedSlot}</div>
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <div className="text-sm text-gray-600">No Bookings</div>
+                                        )
                                     }
-                                    
 
                                     {isToday && <div className="text-sm text-blue-600 font-bold">Today</div>}
                                 </div>
