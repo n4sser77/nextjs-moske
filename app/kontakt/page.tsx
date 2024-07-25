@@ -2,27 +2,21 @@ import ContactForm from "@/app/ui/components/ContactForm";
 
 export default function Kontakt() {
     return (
-        < div className="md:w-10/12 lg:w-8/12 mx-auto sm:w-full bg-gray-100">
-         <h1 className="text-2xl text-slate-700 font-bold text-center pt-3" >Kontakta Oss</h1>
-         <hr className="m-2 w-48 mx-auto border border-slate-200 border-2"/>
+        <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 rounded-lg shadow-md">
+            <h1 className="text-4xl text-slate-700 font-bold text-center mb-10">Kontakta Oss</h1>
+            <hr className="w-24 mx-auto border-2 border-slate-200 mb-10" />
 
-
-
-        <div className="mx-auto  w-10/12 lg:mx-auto sm:w-full lg:w-6/12">
-            
-            <div className="text-center h-1/2 p-4 bg-white shadow rounded border border-slate-100 mb-4">
-                <div className="text-slate-700 text-lg p-2">
+            <div className="bg-gradient-to-r from-sky-50 to-sky-100 p-8 shadow-lg rounded-lg mb-10 mx-auto max-w-3xl">
+                <div className="text-center text-slate-700 text-xl">
                     Har du frågor eller funderingar? Tveka inte att skicka ett meddelande till oss!
                     Vi är här för att hjälpa till. Om du upptäcker några buggar eller har tips på nya funktioner,
                     låt oss veta så att vi kan förbättra din upplevelse på vår webbplats.
                 </div>
             </div>
-            
-            <ContactForm />
 
+            <div className="mx-auto max-w-3xl bg-white p-8 shadow-lg rounded-lg">
+                <ContactForm />
+            </div>
         </div>
-        </div>
-       
     );
 }
-
